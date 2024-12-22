@@ -1,7 +1,37 @@
-import { createBrowserRouter, Outlet } from 'react-router';
+import { ReactNode } from 'react';
+import { createBrowserRouter, Navigate, Outlet, RouteObject } from 'react-router';
 import { ROUTES } from '@/constants/routes';
 import { Layout } from '@/components/Layout';
 
+type RouterType = {
+    label?: ReactNode
+    route: RouteObject
+}
+
+const Routes: RouterType[] = [
+  {
+    label: 'Home',
+    route: {
+      path: ROUTES.ROOT,
+      lazy: () => import('@/pages/HomePage')
+        .then(m => ({ Component: m.default }))
+    }
+  },
+  {
+    label: 'Shader HMR',
+    route: {
+      path: ROUTES.SHADER_HMR,
+      lazy: () => import('@/pages/ShaderHMRPage')
+        .then(m => ({ Component: m.default }))
+    },
+  },
+  {
+    route: {
+      path: ROUTES.ALL,
+      element: <Navigate to={ROUTES.ROOT}/>
+    }
+  }
+] as const;
 
 const Router = createBrowserRouter([
   {
@@ -11,19 +41,9 @@ const Router = createBrowserRouter([
         <Outlet/>
       </Layout>
     ),
-    children: [
-      {
-        index: true,
-        lazy: () => import('@/pages/HomePage')
-          .then(m => ({ Component: m.default }))
-      },
-      {
-        path: ROUTES.SHADER_HMR,
-        lazy: () => import('@/pages/ShaderHMRPage')
-          .then(m => ({ Component: m.default }))
-      },
-    ]
+    children: Routes.map(({ route }) => route)
   }
 ]);
 
-export { Router };
+export { Router, Routes };
+export type { RouterType };
