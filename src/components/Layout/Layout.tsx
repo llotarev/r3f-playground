@@ -3,7 +3,7 @@ import { NavLink } from 'react-router';
 import { ROUTES } from '@/constants/routes';
 import { Routes } from '@/Router';
 
-export type LayoutProps = {
+interface LayoutProps {
     children: ReactNode
 }
 
@@ -36,4 +36,5 @@ function Layout({ children }: LayoutProps) {
   );
 }
 
+export type { LayoutProps };
 export { Layout };

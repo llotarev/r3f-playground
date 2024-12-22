@@ -3,12 +3,12 @@ import { createBrowserRouter, Navigate, Outlet, RouteObject } from 'react-router
 import { ROUTES } from '@/constants/routes';
 import { Layout } from '@/components/Layout';
 
-type RouterType = {
+type RouteType = {
     label?: ReactNode
     route: RouteObject
 }
 
-const Routes: RouterType[] = [
+const Routes: RouteType[] = [
   {
     label: 'Home',
     route: {
@@ -46,4 +46,4 @@ const Router = createBrowserRouter([
 ]);
 
 export { Router, Routes };
-export type { RouterType };
+export type { RouteType };
