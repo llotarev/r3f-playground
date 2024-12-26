@@ -1,22 +1,31 @@
-import { WaveMaterial } from '@/shaders/WaveMaterial';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useRef } from 'react';
+import * as THREE from 'three';
+import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
+import { WaveMaterial, WaveMaterialProps } from '@/materials/WaveMaterial';
 
+extend({ WaveMaterial });
 
 function ShaderPlane() {
-  const ref = useRef({ time: 0, });
 
-  const { viewport, size } = useThree();
+  const three = useThree();
+  const waveMaterialRef = useRef<THREE.ShaderMaterial & WaveMaterialProps>(null);
 
-  useFrame((_, delta) => {ref.current.time += delta;});
+  useFrame(({ pointer }, delta) => {
+    if (waveMaterialRef.current) {
+        waveMaterialRef.current.uTime! += delta;
+        waveMaterialRef.current.uPointer! = pointer;
+    }
+  });
 
   return (
-    <mesh scale={[viewport.width, viewport.height, 1]}>
-      <planeGeometry />
+    <mesh scale={[three.viewport.width, three.viewport.height, 1]}>
+      <planeGeometry/>
       <waveMaterial
-        key={WaveMaterial.key}
-        ref={ref}
-        resolution={[size.width * viewport.dpr, size.height * viewport.dpr]}
+        ref={waveMaterialRef}
+        uResolution={new THREE.Vector2(
+          three.size.width * three.viewport.dpr,
+          three.size.height * three.viewport.dpr
+        )}
       />
     </mesh>
   );

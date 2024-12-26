@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
+import glsl from 'vite-plugin-glsl';
 
 const Constants = {
   PORT: 4200,
@@ -8,7 +9,7 @@ const Constants = {
 } as const;
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), glsl()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '.', 'src'),
