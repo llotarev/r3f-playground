@@ -5,15 +5,15 @@ import { WaveMaterial, WaveMaterialProps } from '@/materials/WaveMaterial';
 
 extend({ WaveMaterial });
 
-function ShaderPlane() {
+const Scene = () => {
 
   const three = useThree();
   const waveMaterialRef = useRef<THREE.ShaderMaterial & WaveMaterialProps>(null);
 
   useFrame(({ pointer }, delta) => {
     if (waveMaterialRef.current) {
-        waveMaterialRef.current.uTime! += delta;
-        waveMaterialRef.current.uPointer! = pointer;
+            waveMaterialRef.current.uTime! += delta;
+            waveMaterialRef.current.uPointer! = pointer;
     }
   });
 
@@ -29,14 +29,12 @@ function ShaderPlane() {
       />
     </mesh>
   );
-}
+};
 
-function ShaderHMRPage() {
-  return (
-    <Canvas>
-      <ShaderPlane/>
-    </Canvas>
-  );
-}
+const HmrPage = () => (
+  <Canvas>
+    <Scene/>
+  </Canvas>
+);
 
-export default ShaderHMRPage;
+export { HmrPage };

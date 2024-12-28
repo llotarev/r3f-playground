@@ -1,5 +1,6 @@
 export const ROUTES = {
   ROOT: '/',
-  SHADER_HMR: '/shader-hmr',
+  HMR: '/hmr',
+  SUN: '/sun',
   ALL: '*',
 } as const;

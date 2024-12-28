@@ -4,17 +4,15 @@ import { shaderMaterial } from '@react-three/drei';
 import vertexShader from './shaders/shader.vert';
 import fragmentShader from './shaders/shader.frag';
 
-interface WaveMaterialProps {
+interface SunSurfaceMaterialProps {
     uTime?: number;
-    uResolution?: THREE.Vector2;
-    uPointer?: THREE.Vector2;
+    uColor?: THREE.Color;
 }
 
-const WaveMaterial = shaderMaterial(
+const SunSurfaceMaterial = shaderMaterial(
   {
     uTime: 0,
-    uResolution: new THREE.Vector2(),
-    uPointer: new THREE.Vector2()
+    uColor: new THREE.Color(0xffffff),
   },
   vertexShader,
   fragmentShader
@@ -23,11 +21,11 @@ const WaveMaterial = shaderMaterial(
 declare global {
     namespace JSX {
         interface IntrinsicElements {
-            waveMaterial:
-                DetailedHTMLProps<HTMLAttributes<THREE.ShaderMaterial>, THREE.ShaderMaterial> & WaveMaterialProps;
+            sunSurfaceMaterial:
+                DetailedHTMLProps<HTMLAttributes<THREE.ShaderMaterial>, THREE.ShaderMaterial> & SunSurfaceMaterialProps;
         }
     }
 }
 
-export type { WaveMaterialProps };
-export { WaveMaterial };
+export type { SunSurfaceMaterialProps };
+export { SunSurfaceMaterial };

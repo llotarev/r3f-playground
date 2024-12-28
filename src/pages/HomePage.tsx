@@ -1,4 +1,4 @@
-function HomePage() {
+const HomePage = () => {
   return (
     <div className="bg-gray-800 flex flex-col items-center justify-center min-w-[100vw] min-h-[100vh]">
       <h1 className="text-4xl text-gray-100 mb-2 max-w-[360px]">
@@ -9,6 +9,6 @@ function HomePage() {
       </p>
     </div>
   );
-}
+};
 
-export default HomePage;
+export { HomePage };

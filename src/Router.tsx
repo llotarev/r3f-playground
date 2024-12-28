@@ -14,15 +14,23 @@ const Routes: RouteType[] = [
     route: {
       path: ROUTES.ROOT,
       lazy: () => import('@/pages/HomePage')
-        .then(m => ({ Component: m.default }))
+        .then(m => ({ Component: m.HomePage }))
     }
   },
   {
     label: 'Shader HMR',
     route: {
-      path: ROUTES.SHADER_HMR,
-      lazy: () => import('@/pages/ShaderHMRPage')
-        .then(m => ({ Component: m.default }))
+      path: ROUTES.HMR,
+      lazy: () => import('@/pages/HmrPage')
+        .then(m => ({ Component: m.HmrPage }))
+    },
+  },
+  {
+    label: 'Sun',
+    route: {
+      path: ROUTES.SUN,
+      lazy: () => import('@/pages/SunPage')
+        .then(m => ({ Component: m.SunPage }))
     },
   },
   {
