@@ -1,6 +1,6 @@
 export const ROUTES = {
   ROOT: '/',
   HMR: '/hmr',
-  SUN: '/sun',
+  CUBE: '/cube',
   ALL: '*',
 } as const;

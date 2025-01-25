@@ -26,11 +26,11 @@ const Routes: RouteType[] = [
     },
   },
   {
-    label: 'Sun',
+    label: 'Cube Shader',
     route: {
-      path: ROUTES.SUN,
-      lazy: () => import('@/pages/SunPage')
-        .then(m => ({ Component: m.SunPage }))
+      path: ROUTES.CUBE,
+      lazy: () => import('@/pages/CubeShader')
+        .then(m => ({ Component: m.CubeShader }))
     },
   },
   {

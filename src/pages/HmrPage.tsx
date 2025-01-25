@@ -12,8 +12,8 @@ const Scene = () => {
 
   useFrame(({ pointer }, delta) => {
     if (waveMaterialRef.current) {
-            waveMaterialRef.current.uTime! += delta;
-            waveMaterialRef.current.uPointer! = pointer;
+        waveMaterialRef.current.uTime! += delta;
+        waveMaterialRef.current.uPointer! = pointer;
     }
   });
 
